@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "A single-page application for sharing Dicoding stories",
   "scripts": {
-    "start-dev": "webpack serve --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "start-dev": "webpack serve --config ./webpack.dev.js",
+    "build": "webpack --config ./webpack.prod.js",
+    "serve": "http-server ./dist --port 3000",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist && del dist\\sw.js 2>nul || exit 0"
   },
@@ -17,21 +18,29 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.22.5",
-    "@babel/preset-env": "^7.22.5",
-    "babel-loader": "^9.1.2",
-    "copy-webpack-plugin": "^11.0.0",
-    "css-loader": "^6.8.1",
+    "@babel/preset-env": "^7.25.7",
+    "babel-loader": "^9.2.1",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.5.3",
-    "style-loader": "^3.3.3",
-    "webpack": "^5.88.1",
+    "http-server": "^14.1.1",
+    "mini-css-extract-plugin": "^2.9.2",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1",
-    "webpack-merge": "^5.10.0"
+    "webpack-dev-server": "^5.1.0",
+    "webpack-merge": "^6.0.1",
+    "workbox-webpack-plugin": "^7.3.0"
   },
   "dependencies": {
     "idb": "^7.1.1",
     "maplibre-gl": "^5.5.0",
     "regenerator-runtime": "^0.13.9",
-    "web-push": "^3.6.7"
+    "web-push": "^3.6.7",
+    "workbox-cacheable-response": "^7.3.0",
+    "workbox-precaching": "^7.3.0",
+    "workbox-routing": "^7.3.0",
+    "workbox-strategies": "^7.3.0"
   }
 }

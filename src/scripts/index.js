@@ -16,12 +16,11 @@ const setupLogoutHandler = () => {
       event.preventDefault();
       console.log('Logout diklik, melakukan logout...');
       AuthUtils.logout();
-      window.location.href = '/auth/login';
-      window.location.reload();
+      history.pushState(null, null, '/auth/login');
+      app.renderPage().finally(() => {
+        setupLogoutHandler();
+      });
     });
-    console.log('Logout handler terdaftar');
-  } else {
-    console.warn('Logout link tidak ditemukan di DOM');
   }
 };
 
@@ -29,7 +28,8 @@ const setupLogoutHandler = () => {
 const registerServiceWorker = async () => {
   if ('serviceWorker' in navigator) {
     try {
-      const registration = await navigator.serviceWorker.register('/sw.js');
+      const swFile = process.env.NODE_ENV === 'production' ? '/sw.bundle.js' : '/sw.js';
+      const registration = await navigator.serviceWorker.register(swFile);
       console.log('Service worker terdaftar:', registration);
 
       if (!navigator.serviceWorker.controller) {
@@ -67,13 +67,12 @@ window.addEventListener('popstate', () => {
     isRendering = true;
     lastPathname = currentPathname;
     console.log('Pathname berubah ke:', currentPathname);
-
     setTimeout(() => {
       app.renderPage().finally(() => {
         isRendering = false;
         setupLogoutHandler();
       });
-    }, 10);
+    });
   } else {
     console.log('Sedang rendering, menunda render');
     lastPathname = currentPathname;
@@ -152,7 +151,10 @@ if (token && navigator.onLine) {
       if (response.status === 401) {
         console.warn("Token mungkin kedaluwarsa, menghapus token dan mengarahkan ke login");
         AuthUtils.logout();
-        window.location.href = '/auth/login';
+        history.pushState(null, null, '/auth/login'); 
+        app.renderPage().finally(() => {
+          setupLogoutHandler();
+        });
       }
     })
     .catch(error => console.error("Error tes API:", error));

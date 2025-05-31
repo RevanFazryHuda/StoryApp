@@ -57,7 +57,8 @@ class LoginView {
   }
 
   redirectToHome() {
-    window.location.href = '/';
+    history.pushState(null, null, '/');
+    window.dispatchEvent(new Event('popstate'));
   }
 }
 

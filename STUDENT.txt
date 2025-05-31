@@ -1,6 +1,6 @@
 APP_URL=https://dicoding-story-app.example.com
 MAP_SERVICE_API_KEY=UF8IB6hcumzoX6wsQVwE
-URL Deployment= https://storyapp212.netlify.app/
+URL Deployment= https://storyrevan.netlify.app/
 
 stucture file
 dicoding-story-app/ 
@@ -10,7 +10,6 @@ dicoding-story-app/
 │ │ ├── screenshot-desktop.png 
 │ │ ├── screenshot-mobile.png 
 │ │ └── logo.png 
-│ ├── sw.js # Service Worker
 │ └── manifest.json
 ├── src/ 
 │ ├── scripts/
@@ -62,12 +61,14 @@ dicoding-story-app/
 │ │ │ ├── skip-content-initiator.js 
 │ │ │ ├── view-transition.js 
 │ │ │ └──  web-push.js 
-│ │ ├── config.js 
+│ │ ├── config.js # Contains API keys 
+│ │ ├── sw.js # Service Worker
 │ │ └── index.js  # Entry point 
 │ ├── styles/ 
 │ │ └── styles.css 
 │ └── index.html 
 ├── .gitignore 
+├── netlify.toml 
 ├── package.json 
 ├── package-lock.json 
 ├── README.md 

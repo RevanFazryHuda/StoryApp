@@ -1,12 +1,11 @@
+import routes from './routes.js';
+
 export function extractPathnameSegments(path) {
   const trimmedPath = path.startsWith('/') ? path.substring(1) : path;
   
-  // Penanganan khusus untuk rute auth
+  // Penanganan khusus untuk rute auth - DIPERBAIKI
   if (trimmedPath.startsWith('auth/')) {
-    const segments = trimmedPath.split('/');
-    if (segments.length >= 2) {
-      return { resource: `auth/${segments[1]}`, id: null };
-    }
+    return { resource: trimmedPath, id: null };
   }
   
   // Penanganan khusus untuk detail dengan ID
@@ -36,9 +35,9 @@ export function constructRouteFromSegments(pathSegments) {
     return '/';
   }
 
-  // Penanganan untuk rute auth
+  // Penanganan untuk rute auth - DIPERBAIKI
   if (pathSegments.resource.startsWith('auth/')) {
-    return `/${pathSegments.resource}`;
+    return `/${pathSegments.resource}`; // Tambahkan leading slash
   }
 
   // Penanganan normal
@@ -61,17 +60,24 @@ export function getActiveRoute() {
   try {
     const pathname = getActivePathname();
     const urlSegments = extractPathnameSegments(pathname);
+    const constructedRoute = constructRouteFromSegments(urlSegments);
     
     // Tambahan logging untuk debug
     console.log('Pathname:', pathname);
     console.log('URL Segments:', urlSegments);
-    console.log('Constructed Route:', constructRouteFromSegments(urlSegments));
+    console.log('Constructed Route:', constructedRoute);
+    console.log('Available Routes:', Object.keys(routes));
     
-    return constructRouteFromSegments(urlSegments);
+    if (!routes[constructedRoute]) {
+      console.warn(`Rute ${constructedRoute} tidak ditemukan, mengarahkan ke 404`);
+      return '/404';
+    }
+
+    return constructedRoute;
   } catch (error) {
     console.error('Error in getActiveRoute:', error);
-    return '/'; // Default ke home jika terjadi error
-  }
+    return '/404';
+  }  
 }
 
 export function parseActivePathname() {

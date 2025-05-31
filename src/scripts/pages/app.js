@@ -147,7 +147,7 @@ class App {
 
       // Handle specific auth routes directly if URL parser fails
       if (!page) {
-        const pathname = window.location.href.slice(1);
+        const pathname = window.location.pathname;
         console.log("Route not found, trying pathname directly:", pathname);
 
         // Penanganan khusus untuk rute auth
