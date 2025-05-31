@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="manifest" href="/manifest.json">
+    <script src="https://unpkg.com/maplibre-gl@3.0.0/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@3.0.0/dist/maplibre-gl.css" rel="stylesheet" />
+    <title>Dicoding Story App</title>
+  </head>
+  <body>
+    <header>
+      <a href="#main-content" class="skip-link" tabindex="0">Skip to content</a>
+      <div class="main-header container">
+        <h1 class="brand-name" href="/">Dicoding Story</h1>
+
+        <nav id="navigation-drawer" class="navigation-drawer">
+          <ul id="nav-list" class="nav-list">
+            <li><a href="/">Beranda</a></li>
+            <li><a href="/add">Tambah Story</a></li>
+            <li><a href="/about">Tentang</a></li>
+            <li><a href="" id="logout-link">Logout</a></li>
+          </ul>
+        </nav>
+
+        <button
+          id="drawer-button"
+          class="drawer-button"
+          aria-label="Navigation menu"
+        >
+          ☰
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content" class="main-content" tabindex="-1"></main>
+
+    <footer>
+      <p>&copy; 2025 Dicoding Story App. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

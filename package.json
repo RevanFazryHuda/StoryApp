@@ -1,0 +1,37 @@
+{
+  "name": "dicoding-story-app",
+  "version": "1.0.0",
+  "description": "A single-page application for sharing Dicoding stories",
+  "scripts": {
+    "start-dev": "webpack serve --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf dist && del dist\\sw.js 2>nul || exit 0"
+  },
+  "keywords": [
+    "dicoding",
+    "spa",
+    "javascript"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "babel-loader": "^9.1.2",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
+    "html-webpack-plugin": "^5.5.3",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-merge": "^5.10.0"
+  },
+  "dependencies": {
+    "idb": "^7.1.1",
+    "maplibre-gl": "^5.5.0",
+    "regenerator-runtime": "^0.13.9",
+    "web-push": "^3.6.7"
+  }
+}
